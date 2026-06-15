@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 
 const cors = require("cors");
 
@@ -8,6 +9,7 @@ const dns = require("dns");
 const connectDB = require("./config/db");
 
 const projectRoutes = require("./routes/projectRoutes");
+const educationRoutes = require("./routes/educationRoutes");
 
 const userRoutes = require("./routes/userRoutes");
 
@@ -24,10 +26,17 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/projects", projectRoutes);
+app.use("/api/education", educationRoutes);
 
 app.use("/api/users", userRoutes);
+
+app.get("/download-cv", (req, res) => {
+  const cvPath = path.join(__dirname, "uploads", "Chathuni SuhansaCV.pdf");
+  res.download(cvPath, "Chathuni-Suhansa-CV.pdf");
+});
 
 app.use("/api/contact", contactRoutes);
 app.use("/api/admin", adminRoutes);
