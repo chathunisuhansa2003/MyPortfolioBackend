@@ -10,6 +10,7 @@ const connectDB = require("./config/db");
 
 const projectRoutes = require("./routes/projectRoutes");
 const educationRoutes = require("./routes/educationRoutes");
+const experienceRoutes =require("./routes/experienceRoutes");
 
 const userRoutes = require("./routes/userRoutes");
 
@@ -30,6 +31,10 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/api/projects", projectRoutes);
 app.use("/api/education", educationRoutes);
+app.use(
+  "/api/experience",
+  experienceRoutes
+);
 
 app.use("/api/users", userRoutes);
 
@@ -41,6 +46,8 @@ app.get("/download-cv", (req, res) => {
 app.use("/api/contact", contactRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api", secretRoute);
+const skillRoutes = require("./routes/skillRoutes");
+app.use("/api/skills", skillRoutes);
 app.get("/", (req, res) => {
   res.send("API Running");
 });

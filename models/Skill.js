@@ -1,17 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const skillSchema = new mongoose.Schema({
-    skillName:{
-        type:String,
-        required:true,
-    },
-
-    level:{
-        type:String,
-    },
-    category:{
-        type:String,
-    },
-});
+const skillSchema = new mongoose.Schema(
+  {
+    name: String,
+    level: String, // optional (Beginner, Intermediate, Advanced)
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Skill", skillSchema);

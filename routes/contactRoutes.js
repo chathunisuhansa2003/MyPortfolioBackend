@@ -34,5 +34,14 @@ router.post("/", async (req, res) => {
   }
 
 });
+// ADMIN GET ALL CONTACTS
+router.get("/", async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+    res.json(contacts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 module.exports = router;

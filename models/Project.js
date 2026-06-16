@@ -10,6 +10,11 @@ const projectSchema = new mongoose.Schema({
 
   live: String,
 
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
+
 });
 
 module.exports = mongoose.model("Project", projectSchema);
